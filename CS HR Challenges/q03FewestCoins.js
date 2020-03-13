@@ -19,23 +19,33 @@ function fewestCoins(coins) {
 
   let minLength = coinArr.length;
   let sbstr = [];
+  console.log("minLength init: ", minLength);
+
+  let inc = 1;
 
   for (let i = 0; i < coinArr.length; i++) {
-    for (let j = i + coinSet.size - 1; j < coinArr.length; j++) {
-      sbstr = coinArr.slice(i, j);
+    for (let j = i + coinSet.size - 1; j < coinArr.length; j += inc) {
+      sbstr = coinArr.slice(i, j + 1);
       sbSet = new Set(sbstr);
+      inc = coinSet.size - sbSet.size;
 
       console.log("i: ", i, "       j: ", j);
       console.log("substr: ", sbstr);
-      console.log("sbSet: ", coiSet);
+      console.log("sbSet: ", sbSet);
+      console.log("Set equality ", inc === 0);
 
-      if (sbSet === coinSet) {
+      if (inc === 0) {
         if (sbstr.length < minLength) {
           minLength = sbstr.length;
+          console.log("new minLength: ", minLength);
         }
+        j = coinArr.length; //stops at full set
+        inc = 1; //reset inc to 1
       }
     }
   }
 
   return minLength;
 }
+
+console.log("minLengthFinal", fewestCoins("dabbcabcd"));
