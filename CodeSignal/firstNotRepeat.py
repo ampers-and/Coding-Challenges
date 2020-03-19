@@ -23,3 +23,25 @@ def firstNotRepeatingCharacter(s):
     return ret
 
 print(firstNotRepeatingCharacter("abacabad"))
+
+def firstNotRepeatingCharacter(s):
+    n = len(s)
+
+    dict = {}
+
+    ret = '_'
+
+    for i in range(n):
+        print("init", dict)
+        if s[i] not in dict:
+            dict[s[i]] = 1
+            print("if", dict)
+        else:
+            dict[s[i]] +=1
+            print("else", dict)
+
+    for d in dict:
+        if dict[d] == 1:
+            return d
+
+    return ret
