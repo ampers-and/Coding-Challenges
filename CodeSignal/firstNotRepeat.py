@@ -7,18 +7,19 @@ def firstNotRepeatingCharacter(s):
 
     ret = '_'
 
+    retl = '_'
+
     for i in range(n):
         print("init", dict)
         if s[n-i-1] not in dict:
             dict[s[n-i-1]] = 1
             print("if", dict)
+            retl = ret
+            ret = s[n-i-1]
         else:
             dict[s[n-i-1]] +=1
             print("else", dict)
-
-    for d in dict:
-        if d == 1:
-            return d
+            ret = retl
 
     return ret
 
